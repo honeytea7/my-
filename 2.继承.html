@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function Father() {
+    //定义父类
+    this.hobby=['sing','dance']
+}
+Father.prototype.run = function () {
+    console.log('run');
+}
+
+
+// 定义子类
+function Son() {
+    this.like = ["rap", "basketball"];
+} 
+let father=new Father()
+console.log(father);
+console.log(Father);
+//核心：将 Son的原型指向Father的实例，此时原来的prototype被覆盖了，新的prototype.constructor指的是Father
+Son.prototype = father
+Son.say=function(){
+    console.log('say');
+}
+// 所以需要手动把construcctor指回来
+Son.prototype.construtor = Son
+console.log(Son.prototype === father);
+let son=new Son()
+// console.log(son.__proto__);
+console.log('1111111111111111111111111111');
+// console.log(Object());
+console.log(Son.say());
+
+    </script>
+</body>
+</html>
+
+
